@@ -72,3 +72,7 @@ Unclear Trent bets are flagged `needs_clarification` + `question` and stay pendi
 
 ## Routines handoff (Oct 20, 2026)
 Reed's 5 routines can be run by any bot (grok, chatgpt, pablo). Only the owner in `routines/owners.json` runs each one. See [routines/README.md](routines/README.md). Every run starts with `node scripts/routine-gate.mjs check <id> <me>` and ends with `stamp`.
+
+## Hosted sandbox overrides
+
+This repository is reedrice/goggins-picks-sandbox, NOT production. Brandon may push design changes to this repository main to update its preview. Production main is never a target. Keep the guard loaded first in index.html; it isolates browser storage and blocks app writes. Do not invoke production scripts/routines. Review approved UI changes separately before porting them back.

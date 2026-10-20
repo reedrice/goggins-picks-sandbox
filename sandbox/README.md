@@ -27,3 +27,7 @@ ChatGPT currently owns live-feed-update every 10 minutes and trent-post-check ev
 Keep existing filtering, refresh prices, charts, Analytics, sharing, builder links and Play behavior working. Check narrow/mobile and desktop layouts and other tabs. Run relevant tests and required root checks. Use sample local money only. Add a handoff note and open a focused PR for Reed's review. A branch push does not deploy this project's main Pages site. Do not add deployment workflows.
 
 Production continues receiving data/other contributor updates. This sandbox snapshot does not automatically follow main. Bring newer main changes into this branch deliberately and resolve conflicts without overwriting live data. Before release, exclude experimental data/storage exports and unrelated generated files, follow root version-bump rules, and have Reed approve merging the design. The sandbox launcher/guard should remain development-only; the production index must never reference them.
+
+## Hosted preview
+
+Reed chose a separate repository and hosted preview: reedrice/goggins-picks-sandbox. In that repository only, push to main updates the sandbox Pages site. The production repository is untouched. Hosted index.html loads guard.js directly before other scripts. The guard scopes localStorage and sessionStorage keys because both Pages projects share an origin. This prevents normal sandbox app code from reading or overwriting production storage. It is an accidental-write guard, not protection from deliberately bypassing it.
