@@ -1303,3 +1303,5 @@ Reed explicitly requested combined edges across every game, authorizing this edi
 ## 66. Brandon Picks sandbox (branch only)
 
 Reed requested an isolated clone for Brandon to simplify Today's Picks without affecting production. Branch sandbox/brandon-picks starts at 8077f93 and adds only sandbox tooling/documentation and branch-specific instructions. Run node sandbox/serve.mjs at 127.0.0.1:8877. Production HTML/assets remain unchanged; the local server injects an early write guard and banner. Local origin isolates browser storage; fetch/XHR mutations, beacons and form submissions are blocked to reduce accidental shared writes. No new scheduler/deployment. Read sandbox/README.md; use PR review before any production merge.
+
+Hosted follow-up: separate repo reedrice/goggins-picks-sandbox serves the preview. Its index loads the guard first; local/session storage are namespaced; production API publisher is disabled. Brandon (apexlegend883-pixel) has been invited with write access. Sandbox main deploys only sandbox. No automatic sync or merge into production.
