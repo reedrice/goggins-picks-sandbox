@@ -76,3 +76,7 @@ Reed's 5 routines can be run by any bot (grok, chatgpt, pablo). Only the owner i
 ## Hosted sandbox overrides
 
 This repository is reedrice/goggins-picks-sandbox, NOT production. Brandon may push design changes to this repository main to update its preview. Production main is never a target. Keep the guard loaded first in index.html; it isolates browser storage and blocks app writes. Do not invoke production scripts/routines. Review approved UI changes separately before porting them back.
+
+## Required approval before production
+
+Reed must explicitly approve the specific sandbox version and changes before anything moves to the live site. Reed's existing ChatGPT/Codex agent must review the changes, select only approved UI edits, run relevant functionality/mobile checks and prepare a rollback point before deployment. Brandon and his agent may update THIS sandbox repository only. Never push, merge, publish or automatically sync changes into reedrice/goggins-of-gambling. Sandbox completion, passing tests or approval from another contributor does not replace Reed's approval and that review. Later changes require a fresh review. Keep sandbox tooling and storage guards out of production.
