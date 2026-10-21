@@ -16,6 +16,10 @@
     // Yesterday catches games still live after local midnight. Completed games are filtered below.
     return [fmt(new Date(now.getTime() - 86400000)), fmt(now)];
   }
+  function teamLogo(team) {
+    const candidates = [team.logo, ...(team.logos || []).map(logo => logo.href)];
+    return candidates.find(url => typeof url === 'string' && /^https:\/\//i.test(url)) || null;
+  }
   function liveGames(board, source, mode = 'live', now = new Date()) {
     const seen = new Set();
     return (board.events || []).flatMap(event => {
@@ -35,6 +39,7 @@
       return [{ id: String(event.id), league: source === 'Soccer' && soccerLeague ? soccerLeague[1] : source,
         away: away.team.shortDisplayName || away.team.displayName || away.team.abbreviation,
         home: home.team.shortDisplayName || home.team.displayName || home.team.abbreviation,
+        awayLogo: teamLogo(away.team), homeLogo: teamLogo(home.team),
         awayScore: score(away), homeScore: score(home), detail: mode === 'upcoming' ? event.date : status.type.shortDetail || status.type.detail || status.displayClock || '' }];
     });
   }
@@ -64,6 +69,21 @@
     header.append(meta, pause);
     const viewport = node('div', 'pst-viewport');
     root.replaceChildren(header, viewport);
+    // Capture errors on both original and cloned marquee lanes. Team text stays
+    // visible if ESPN does not supply a logo or an image cannot be loaded.
+    root.addEventListener('error', event => {
+      if (event.target.matches && event.target.matches('img.pst-logo')) event.target.remove();
+    }, true);
+    const team = (name, logo) => {
+      const label = node('span', 'pst-team');
+      if (logo) {
+        const image = node('img', 'pst-logo'); image.src = logo;
+        image.alt = ''; image.width = 20; image.height = 20; image.decoding = 'async';
+        label.append(image);
+      }
+      label.append(node('span', 'pst-name', name));
+      return label;
+    };
     root.setAttribute('role', 'region'); root.setAttribute('aria-label', S.title);
     function render(snapshot) {
       if (active !== state || !root.isConnected) return;
@@ -84,9 +104,9 @@
         block.append(node('strong', 'pst-league', S.leagues[group.league] || S.soccer));
         group.games.forEach(game => {
           const item = node('span', 'pst-game');
-          item.append(node('span', 'pst-team', game.away));
+          item.append(team(game.away, game.awayLogo));
           if (!snapshot.upcoming) item.append(node('b', 'pst-score', game.awayScore));
-          item.append(node('span', 'pst-at', S.at), node('span', 'pst-team', game.home));
+          item.append(node('span', 'pst-at', S.at), team(game.home, game.homeLogo));
           if (!snapshot.upcoming) item.append(node('b', 'pst-score', game.homeScore));
           const detail = snapshot.upcoming ? new Date(game.detail).toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: 'numeric', minute: '2-digit' }) + ' CT' : game.detail;
           item.append(node('span', 'pst-clock', detail));
