@@ -593,6 +593,20 @@ function unitWords(u) {
 window.STR.unitWords = unitWords;
 
 window.STR.liveBets = {
+ design: {
+   filters: { all: 'All', big: 'Big edge', slight: 'Slight edge', new: 'New' },
+   tiers: { big: 'Big edge', slight: 'Slight edge' }, edge: 'Edge', gone: 'No longer active',
+   filterLabel: 'Filter edges', game: 'Game', gameLines: 'Game lines', propBets: 'Prop bets',
+   details: 'Details', market: 'Market ↗', chart: 'Chart', review: 'Review', update: 'Update',
+   unverified: 'Game context unverified', cheaper: n => `${n} pts below opening price`,
+   payout: n => `$10 returns $${n}`, opened: (odds, time) => `Opened ${odds} · First seen ${time}`,
+   newCount: n => `${n} new active edge${n === 1 ? '' : 's'} since your last visit`,
+   caughtUp: 'No new active edges since your last visit.', noMatching: 'No active edges match this filter.',
+   activity: n => `Activity (${n})`, priceHistory: n => `Past edges & price moves (${n})`,
+   alertTypes: { new_edge: 'Edge detected', gone: 'Edge ended', removed: 'Removed', news: 'Price move' },
+   atAlert: odds => `At alert: ${odds}`, less: 'Show less', more: n => `Show ${n} more`,
+   about: 'About edges', explanation: 'Compared with the opening Polymarket price: big = 10–24 points lower, slight = 4–9. Game context comes from ESPN. Alerts show prices at detection; current cards may differ.'
+ },
  noAlerts: 'No alerts across these games yet.',
  all: 'All games', games: n => n + ' games', failed: n => n + ' game feeds unavailable; retrying',
  stale: 'Some prices may be old. The feed is waiting for an update.',
