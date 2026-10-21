@@ -3,66 +3,66 @@
   "routines": {
     "daily-slate-odds-digest": {
       "name": "Daily slate & odds digest",
-      "owner": "grok",
-      "enabled": true,
-      "schedule_ct": "0 7 * * *",
+      "owner": "off",
+      "enabled": false,
+      "schedule_ct": null,
       "last_run_by": null,
       "last_run_at": null,
-      "notes": "Morning digest. Time from the HANDOFF (\"7 AM digest\")."
+      "notes": "Sandbox dormant. Explicit human-requested testing only; no background or scheduled runs. See AGENTS.md."
     },
     "lineup-goalie-check": {
       "name": "Lineup & goalie check",
-      "owner": "grok",
-      "enabled": true,
-      "schedule_ct": "0 12,16 * * *",
+      "owner": "off",
+      "enabled": false,
+      "schedule_ct": null,
       "last_run_by": "grok",
       "last_run_at": "2026-10-20T21:05:22.538Z",
-      "notes": "Schedule not exported yet.  and fill schedule_ct."
+      "notes": "Sandbox dormant. Explicit human-requested testing only; no background or scheduled runs. See AGENTS.md."
     },
     "late-scratch-check": {
       "name": "Late-scratch check",
-      "owner": "grok",
-      "enabled": true,
-      "schedule_ct": "50 17 * * *",
+      "owner": "off",
+      "enabled": false,
+      "schedule_ct": null,
       "last_run_by": "grok",
       "last_run_at": "2026-10-20T22:56:10.514Z",
-      "notes": "Right after NFL inactives (~5:45 PM CT). Confirm exact cron with Reed."
+      "notes": "Sandbox dormant. Explicit human-requested testing only; no background or scheduled runs. See AGENTS.md."
     },
     "play-money-leaderboard-update": {
       "name": "Play-money leaderboard update",
-      "owner": "grok",
-      "enabled": true,
-      "schedule_ct": "0 12,15,17-23 * * *",
+      "owner": "off",
+      "enabled": false,
+      "schedule_ct": null,
       "last_run_by": "grok",
       "last_run_at": "2026-10-20T22:55:32.919Z",
-      "notes": "Runs several times a day (one run at 12 PM also runs learn.mjs). Exact cron not exported;"
+      "notes": "Sandbox dormant. Explicit human-requested testing only; no background or scheduled runs. See AGENTS.md."
     },
     "weekly-learning-review": {
       "name": "Weekly learning review",
-      "owner": "grok",
-      "enabled": true,
-      "schedule_ct": "0 10 * * 0",
+      "owner": "off",
+      "enabled": false,
+      "schedule_ct": null,
       "last_run_by": null,
       "last_run_at": null,
-      "notes": "Weekly. Day/time not exported;"
+      "notes": "Sandbox dormant. Explicit human-requested testing only; no background or scheduled runs. See AGENTS.md."
     },
     "live-feed-update": {
       "name": "Live Bets feed update",
-      "owner": "chatgpt",
-      "enabled": true,
-      "schedule_ct": "*/10 * * * *",
+      "owner": "off",
+      "enabled": false,
+      "schedule_ct": null,
       "last_run_by": "chatgpt",
       "last_run_at": "2026-10-20T23:04:04.002Z",
-      "notes": "Temporary takeover authorized by Reed Oct 20, 2026. Codex thread heartbeat every 10 minutes; connector publishes to main. Read routines/LIVE-FEED.md. Pablo must skip until ownership is returned."
+      "notes": "Sandbox dormant. Explicit human-requested testing only; no background or scheduled runs. See AGENTS.md."
     },
     "trent-post-check": {
       "name": "Fade Trent new-post check",
-      "owner": "chatgpt",
-      "enabled": true,
-      "schedule_ct": "0 */2 * * *",
+      "owner": "off",
+      "enabled": false,
+      "schedule_ct": null,
       "last_run_by": "chatgpt",
       "last_run_at": "2026-10-20T22:28:55.426Z",
-      "notes": "Browser reads of @BookitWithTrent; see routines/FADE-TRENT.md. Two-hour polling plus Pages deployment delay, not instant X webhooks."
+      "notes": "Sandbox dormant. Explicit human-requested testing only; no background or scheduled runs. See AGENTS.md."
     }
   }
 }
