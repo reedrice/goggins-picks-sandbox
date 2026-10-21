@@ -1309,3 +1309,17 @@ Hosted follow-up: separate repo reedrice/goggins-picks-sandbox serves the previe
 ## Required approval before production
 
 Reed must explicitly approve the specific sandbox version and changes before anything moves to the live site. Reed's existing ChatGPT/Codex agent must review the changes, select only approved UI edits, run relevant functionality/mobile checks and prepare a rollback point before deployment. Brandon and his agent may update THIS sandbox repository only. Never push, merge, publish or automatically sync changes into reedrice/goggins-of-gambling. Sandbox completion, passing tests or approval from another contributor does not replace Reed's approval and that review. Later changes require a fresh review. Keep sandbox tooling and storage guards out of production.
+
+## 67. Brandon: compact Today's Picks experiment (sandbox only, Oct 20, 2026)
+
+Scope: reedrice/goggins-picks-sandbox only. Supporting card analysis, price comparisons, payout examples, confirmed lineup notes and combo legs now sit behind native Details disclosures. Single-pick Analytics, chart/Share controls, market/builder/Play actions stay visible. Combo chance summaries remain visible. Pending news, verification warnings and out/at-risk lineup notes stay visible. Slate notes and risk legend moved behind About this slate; empty category headings omitted, with one overall empty state retained.
+
+Shared-file audit: pickCard/evalBlock are Picks-only render helpers; new strings are STR.picks keys. New CSS requires #picks-view.today-picks, a class set only by renderTodayPicks. The Live Bets container is recreated without that class. No other screen, data snapshot, routine, owner file, live script, guard or disabled publisher was edited. Guard remains before application scripts. Version bumped using the required script.
+
+Validation: every tests/*.test.js and tests/*.test.mjs file passed; final app syntax, evaluate, no-instructions and version checks passed. Browser checked desktop and 390x844 mobile: native disclosure click/Enter, NBA/all-sports filtering, combo legs, Analytics sheet, chart button/card-tap price chart, Share menu, builder loading, Play confirmation (dismissed), public price refresh, market URL preservation and all six navigation destinations. No horizontal overflow at mobile width. Only sample local profile used. Existing public data/market availability can affect live reads; no data jobs were run. Disclosures reset when the list rerenders. Local server injects the already-hosted guard a second time (pre-existing non-configurable-storage console error); first guard remains active. No sandbox tooling changes in this UI experiment.
+
+Production transfer still requires Brandon/Reed approval and Reed's agent review. This experiment updates only the sandbox preview; no production push or synchronization.
+
+Publishing status: sandbox-only git push could not authenticate (no local Git credentials). Brandon's GitHub connector create-tree call returned 403 Resource not accessible by integration. No remote files were changed; hosted verification remains pending GitHub sandbox write access. Tested changes are retained as local commits and an exportable patch.
+
+Publishing access follow-up: Brandon completed GitHub CLI browser authorization as apexlegend883-pixel. CLI configuration is outside this repository. Sandbox remote and unchanged upstream main verified before publication; production remains excluded. Previous authentication blocker is resolved.
