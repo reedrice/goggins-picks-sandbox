@@ -613,3 +613,16 @@ window.STR.liveBets = {
  empty: 'No qualifying price movements across these games right now.',
  unavailable: 'Live bets are unavailable. Retrying in a minute.'
 };
+
+window.STR.progress = {
+ loading: 'Checking live progress…', unavailable: 'ESPN is unavailable. Retrying shortly.',
+ noGame: 'No verified game match for live progress.', noStat: 'Live progress is unavailable for this market.',
+ pregame: 'Waiting for the game to start.', clockUnavailable: 'Game clock unavailable', dash: '—',
+ starts: time => `Starts ${time} CT`, checked: time => `Checked ESPN · ${time} CT`, final: 'Final statistics',
+ count: (value,target,stat) => `${value} / ${target} ${stat}`, needs: n => `${n} more needed`, reached: 'Target reached', notReached: 'Target not reached',
+ below: n => `Below ${n}`, atLine: 'At the line', limitReached: 'Limit reached',
+ adjusted: n => `Adjusted margin ${n > 0 ? '+' : ''}${n}`, margin: n => n > 0 ? `Leading by ${n}` : n < 0 ? `Trailing by ${-n}` : 'Tied',
+ gameElapsed: 'Game elapsed · regulation', legs: n => `Live progress · ${n} legs`,
+ explanation: 'Game statistics, not a win probability. Live scores do not refresh the saved betting prices. Final settlement may follow different market rules.',
+ stats: { reb:'rebounds', ast:'assists', pts:'points', goals:'goals', stl:'steals', blk:'blocks', saves:'saves', threes:'threes', pra:'points + rebounds + assists', passyd:'passing yards', rushyd:'rushing yards', recyd:'receiving yards', rec:'receptions', ptd:'passing touchdowns', int:'interceptions', hits:'hits', hr:'home runs', rbi:'RBIs', k:'strikeouts', runs:'runs', score:'points / goals' }
+};

@@ -990,6 +990,7 @@
         <span class="pick-actions">${P.badge[action] ? `<span class="badge ${esc(action)}">${esc(P.badge[action])}</span>` : ''}${pk.id ? shareBtn(pk.id) : ''}${vizOn() ? chartBtnFor(vizSpec(pk)) : ''}</span>
       </div>
       ${analytics || `<div class="pick-overview muted small">${esc(overview)}</div>`}
+      ${window.BetProgress ? (isMulti ? `<details class="bp-combo"><summary>${esc(STR.progress.legs(pk.legs.length))}</summary>${pk.legs.map(leg => `<div class="bp-leg"><div class="bp-leg-title">${esc(leg.desc)}</div>${window.BetProgress.html(window.BetProgress.spec(leg))}</div>`).join('')}</details>` : window.BetProgress.html(window.BetProgress.spec(pk))) : ''}
       ${pk.pending_news ? `<div class="news">⏳ <b>${esc(P.news)}</b> ${esc(PL.neutral(PL.noCents(pk.pending_news)))}</div>` : ''}
       ${pk.verify_note ? `<div class="verify">⚠️ ${esc(PL.neutral(PL.noCents(pk.verify_note)))}</div>` : ''}
       ${pk.lineup_note && pk.lineup_note.status !== 'confirmed' ? lineupHtml(pk.lineup_note) : ''}

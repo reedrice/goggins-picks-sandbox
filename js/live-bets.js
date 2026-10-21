@@ -232,6 +232,9 @@
     li.append(el('div', 'lb-matchup', eventGame));
     if (e.class === 'unverified') li.append(el('div', 'lb-unverified', P.unverified));
     li.append(el('div', 'lb-odds', e.now_odds));
+    if (root.BetProgress) {
+      const progress = el('div', 'bp-host'); progress.dataset.bp = JSON.stringify(root.BetProgress.spec({...e,event_slug:eventSlug,event:eventGame})); li.append(progress);
+    }
     if (root.OurChance && e.market_id && !gone) {
       const oc = el('div', 'oc oc-sm'); oc.setAttribute('data-oc', JSON.stringify({ marketId: e.market_id, side: Number(String(e.key).split(':')[1]) ? 'no' : 'yes', market: e.now_chance, text: e.side, question: e.question }));
       li.append(oc);
