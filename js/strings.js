@@ -130,6 +130,20 @@ window.STR = {
   /** Picks tab toggle. The Live Bets view itself is Richie's (js/live-bets.js, HANDOFF §32). */
   live: { group: 'Which view', today: "Today's Picks", live: 'Live Bets 🔴', soon: 'Live bets coming soon' },
   picks: {
+    scores: {
+      title: 'Live scores', upcoming: 'Upcoming today', loading: 'Checking ESPN…', pause: 'Pause', resume: 'Resume', at: '@', soccer: 'Soccer',
+      empty: 'No more games scheduled today.', unavailable: 'Scores are unavailable. Retrying shortly.',
+      checked: time => `ESPN · ${time} CT`,
+      partial: (leagues, time) => `ESPN · ${time} CT · Unavailable: ${leagues}`,
+      coverage: 'All live games reported by ESPN for NBA, NHL, NFL, MLB, WNBA and soccer. When none are live, shows today’s upcoming games. Refreshes every minute.',
+      leagues: { NBA: 'NBA', NHL: 'NHL', NFL: 'NFL', MLB: 'MLB', WNBA: 'WNBA',
+        'uefa.champions': 'Champions League', 'uefa.europa': 'Europa League', 'uefa.europa.conf': 'Conference League',
+        'eng.1': 'Premier League', 'eng.2': 'Championship', 'esp.1': 'La Liga', 'ita.1': 'Serie A',
+        'ger.1': 'Bundesliga', 'fra.1': 'Ligue 1', 'usa.1': 'MLS', 'mex.1': 'Liga MX',
+        'col.1': 'Colombian Primera A', 'conmebol.sudamericana': 'Copa Sudamericana',
+        'conmebol.libertadores': 'Copa Libertadores', 'bra.1': 'Brasileirão', 'arg.1': 'Argentine Primera División',
+        'ned.1': 'Eredivisie', 'por.1': 'Primeira Liga', 'usa.ncaa.1': 'College soccer' }
+    },
     details: 'Details',
     slateDetails: 'About this slate',
     // "Refresh prices" on the Picks tab (js/live-picks.js, HANDOFF §37)

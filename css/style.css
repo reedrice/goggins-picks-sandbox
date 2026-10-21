@@ -695,3 +695,26 @@ a.btn-play { display: block; text-align: center; text-decoration: none; margin-t
 #picks-view.today-picks .pick-matchup strong { font-weight: 700; overflow-wrap: anywhere; }
 #picks-view.today-picks .pick-matchup-at { color: #a3a3ad; font-size: 13px; }
 #picks-view.today-picks .pick-matchup .tlogo { flex-shrink: 0; }
+
+/* Browser score ticker: only Today's Picks, independent of the filtered cards. */
+#tab-picks .picks-score-ticker { margin: 0 0 16px; padding: 10px 0 0; border: 1px solid #ffffff20; background: #101114; border-radius: 12px; overflow: hidden; }
+#tab-picks .pst-header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 0 12px 8px; }
+#tab-picks .pst-title { font: 700 12px system-ui; color: #ff7848; text-transform: uppercase; letter-spacing: .06em; }
+#tab-picks .pst-meta { flex: 1; font-size: 10px; color: #a9a9b3; }
+#tab-picks .pst-pause { min-height: 32px; padding: 3px 8px; border: 1px solid #ffffff28; border-radius: 6px; background: transparent; color: #ddd; font: 12px system-ui; cursor: pointer; }
+#tab-picks .pst-viewport { overflow: hidden; padding: 8px 0; border-top: 1px solid #ffffff12; }
+#tab-picks .pst-track { display: flex; width: max-content; animation: picks-scores-scroll var(--pst-duration, 45s) linear infinite; }
+#tab-picks .pst-lane { display: flex; width: max-content; min-width: var(--pst-lane-width, 0px); box-sizing: border-box; }
+#tab-picks .pst-group { display: flex; align-items: center; gap: 22px; padding: 0 22px; white-space: nowrap; }
+#tab-picks .pst-league { color: #ff7848; font: 800 12px system-ui; }
+#tab-picks .pst-game { display: inline-flex; align-items: center; gap: 7px; font: 600 13px system-ui; }
+#tab-picks .pst-score { color: #fff; font-size: 16px; font-variant-numeric: tabular-nums; }
+#tab-picks .pst-at, #tab-picks .pst-clock { color: #a9a9b3; font-size: 11px; }
+#tab-picks .pst-empty { padding: 2px 12px; font-size: 13px; color: #b9b9c2; }
+#tab-picks .picks-score-ticker:hover .pst-track, #tab-picks .picks-score-ticker:focus-within .pst-track, #tab-picks .pst-paused .pst-track { animation-play-state: paused; }
+@keyframes picks-scores-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+ #tab-picks .pst-track { animation: none; }
+ #tab-picks .pst-viewport { overflow-x: auto; }
+ #tab-picks .pst-lane[aria-hidden] { display: none; }
+}
