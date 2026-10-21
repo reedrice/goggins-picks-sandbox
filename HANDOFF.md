@@ -1323,3 +1323,9 @@ Production transfer still requires Brandon/Reed approval and Reed's agent review
 Publishing status: sandbox-only git push could not authenticate (no local Git credentials). Brandon's GitHub connector create-tree call returned 403 Resource not accessible by integration. No remote files were changed; hosted verification remains pending GitHub sandbox write access. Tested changes are retained as local commits and an exportable patch.
 
 Publishing access follow-up: Brandon completed GitHub CLI browser authorization as apexlegend883-pixel. CLI configuration is outside this repository. Sandbox remote and unchanged upstream main verified before publication; production remains excluded. Previous authentication blocker is resolved.
+
+## 68. Brandon: clearer team matchups and logos (sandbox only)
+
+Today's Picks cards now separate the prop description from a brighter bold matchup row, with a 24px logo next to each team name. Both team names must match one snapshot event for the pick's sport/date before adding logos; unmatched/descriptive event text stays bold without invented logos. Uses Teams.badge with recognizable ESPN team artwork first, then existing registry/image-error fallbacks. Combo matchups get one row per game. Styling stays scoped to #picks-view.today-picks. Other tabs, Live Bets, data and routines are unchanged. Guard retained and version bumped.
+
+Checks: app syntax, version and no-instructions tests passed. Desktop and 390px mobile reviewed; NBA/NHL identities and loaded artwork verified, filters and Details retained, combo rows wrap without page overflow. Logos use public image sources and may fall back when unavailable.

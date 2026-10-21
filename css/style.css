@@ -688,3 +688,10 @@ a.btn-play { display: block; text-align: center; text-decoration: none; margin-t
  #picks-view.today-picks .pick-head .pick-actions { justify-content: flex-start; }
  #picks-view.today-picks .card { padding: 16px; }
 }
+
+/* Picks matchup names and the logo belonging to each team. */
+#picks-view.today-picks .pick-matchup { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 10px; color: #f2f2f5; font-size: 15px; line-height: 1.45; }
+#picks-view.today-picks .pick-matchup-team { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+#picks-view.today-picks .pick-matchup strong { font-weight: 700; overflow-wrap: anywhere; }
+#picks-view.today-picks .pick-matchup-at { color: #a3a3ad; font-size: 13px; }
+#picks-view.today-picks .pick-matchup .tlogo { flex-shrink: 0; }

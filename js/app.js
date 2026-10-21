@@ -50,6 +50,7 @@
 
   let calc = freshCalc();
   let picksData = null;
+  let picksMarketIndex = null;
   /** data/book-odds.json (other apps' prices); optional, loaded with the picks. */
   let bookOdds = null;
   /** Game predictions for the "My prediction" line: picks.sections.predictions + data/predictions.json. */
@@ -927,6 +928,29 @@
     history.replaceState(null, '', location.pathname + location.hash);
   }
 
+  // Picks-only matchup row. Match both names within one snapshot event so logos
+  // never come from a similarly named team in another sport or another game.
+  function pickMatchupHtml(pk) {
+    const normalize = value => String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const matches = (team, label) => ['name', 'short', 'full', 'abbr', 'display']
+      .some(key => team[key] && normalize(team[key]) === normalize(label));
+    return String(pk.event || '').split(/\s+\+\s+/).map(game => {
+      const names = game.split(/\s+@\s+/);
+      const events = ((picksMarketIndex && picksMarketIndex.events) || []).filter(ev =>
+        (!pk.sport || String(pk.sport).split('+').map(s => s.trim().toLowerCase()).includes(String(ev.sport).toLowerCase())) &&
+        (!picksData || ev.date === (pk.slate_date || picksData.slate_date)));
+      const event = names.length === 2 && events.find(ev => ev.teams && ev.teams.length === 2 &&
+        names.every(name => ev.teams.some(team => matches(team, name))));
+      if (!event) return `<div class="pick-matchup"><strong>${esc(game)}</strong></div>`;
+      const teamHtml = name => {
+        const team = event.teams.find(team => matches(team, name));
+        // Use the existing logo renderer, including its image-error fallback.
+        return `<span class="pick-matchup-team">${T.badge({ ...team, league: event.league, logo: T.espnUrl(event.league, team.abbr) || team.logo }, 24)}<strong>${esc(name)}</strong></span>`;
+      };
+      return `<div class="pick-matchup">${teamHtml(names[0])}<span class="pick-matchup-at">@</span>${teamHtml(names[1])}</div>`;
+    }).join('');
+  }
+
   function pickCard(pk, cat, sec) {
     const P = STR.picks;
     const isMulti = Array.isArray(pk.legs) && pk.legs.length > 0;
@@ -951,16 +975,16 @@
          ${tapHtml(sp)}${spreadHtml((pk.side || '') + ' ' + (pk.market || ''), pk)}
          ${deal ? `<div class="deal deal-${deal} small">${esc(STR.plain.deal[deal])} ${tip('advantage')}</div>` : ''}
          ${priceLineHtml(pk, bookPrices(pk), true)}`);
-    const teams = (pk.teams || []).map(teamRef);
     const analytics = !isMulti ? ocDiv(pk.market_id, pk.market_side, pk.price, pk.side, pk.player) : '';
     const overviewPct = window.PickEval.evaluate(pk, sec || 'singles', STR).pct;
     const overview = overviewPct === null ? STR.none : chanceText(overviewPct / 100, isMulti ? pk.legs.length : 1) || STR.none;
     return `<div class="card ${action === 'skip' ? 'skip' : ''} ${sec === 'lottery' ? 'lotto' : ''}" data-pick-id="${esc(pk.id || '')}">
       <div class="pick-head">
-        <div class="pick-id">${teams.length ? `<span class="logos">${T.badges(teams, 30)}</span>` : ''}<div>
+        <div class="pick-id"><div>
           ${/* Combos: the tier name ("Small payout · 3 picks") is the title; the legs list below says what's in it. */ ''}
           <div class="pick-title">${esc(isMulti ? pk.market || pk.side : sp.title || pk.market)}</div>
-          <div class="pick-sub">${!isMulti && pk.market && pk.side ? posText(pk.market, pk) + ' · ' : ''}${esc(pk.event || '')}</div>
+          ${!isMulti && pk.market && pk.side ? `<div class="pick-sub">${posText(pk.market, pk)}</div>` : ''}
+          ${pickMatchupHtml(pk)}
         </div></div>
         <span class="pick-actions">${P.badge[action] ? `<span class="badge ${esc(action)}">${esc(P.badge[action])}</span>` : ''}${pk.id ? shareBtn(pk.id) : ''}${vizOn() ? chartBtnFor(vizSpec(pk)) : ''}</span>
       </div>
@@ -1052,7 +1076,7 @@
         fetchData(CFG.bookOddsPath || 'data/book-odds.json').catch(() => null),   // optional
         fetchData('data/predictions.json').catch(() => null),                     // optional
         window.Positions.load(),                                                   // optional: player position badges
-        Promise.race([window.Picker.loadIndex().catch(() => {}), new Promise(r => setTimeout(r, 1500))])
+        Promise.race([window.Picker.loadIndex().then(index => { picksMarketIndex = index; }).catch(() => {}), new Promise(r => setTimeout(r, 1500))])
       ]);
     } catch (e) {
       el.innerHTML = `<h2>${esc(STR.picks.title)}</h2><p class="error">${esc(STR.picks.loadError)}</p>`;
