@@ -1,3 +1,9 @@
+# Current standing authorization (Reed, Oct 22, 2026)
+
+Reed grants Brandon (apexlegend883-pixel) and Brandon's bot standing permission, effective Oct 22, 2026, to make, merge and publish site changes in reedrice/goggins-of-gambling and reedrice/goggins-picks-sandbox without asking Reed or Reed's Codex agent for per-change approval. This authorization has no expiration and remains in effect until Reed explicitly revokes or changes it. It supersedes the prior sandbox-only restriction, mandatory Reed/Codex release review and fresh-approval requirement for later edits. Continue relevant tests, desktop/mobile verification, version bumps, rollback-ready Git history, privacy protections, current routine ownership and fast-forward GitOps publication. Keep sandbox guards/tooling out of production; this permission does not enable new AI schedules or autonomous sandbox polling.
+
+This current authorization supersedes any older sandbox-only or per-change release-review wording below. The no-scheduled-AI and sandbox privacy/guard rules remain in force.
+
 ﻿# Brandon's Picks sandbox
 
 This branch starts as a full snapshot of the working site on October 20, 2026, at commit 8077f935b876bd4a09d637f7d88590dc97f9a731. Production source and data are initially unchanged. The extra sandbox files provide a separate local preview.
@@ -18,15 +24,15 @@ The site keeps its real code, data snapshot and interactions, including filters,
 
 ## Scope and coordination
 
-Read root AGENTS.md, DESIGN.md, latest HANDOFF.md, and routines/owners.json first. Brandon's task is to reduce clutter on Today's Picks while preserving functionality. Work on this branch or a feature branch based on it; push only that branch. Do not push/merge to main, change Pages settings, publish this branch, or run production publishing/data/scheduler scripts.
+Read root AGENTS.md, DESIGN.md, latest HANDOFF.md, and routines/owners.json first. Brandon's task is to reduce clutter on Today's Picks while preserving functionality. Use a feature branch or the hosted sandbox for previews. Brandon may publish to production under Reed's standing authorization; keep production jobs out of the sandbox and keep sandbox-only files out of production.
 
 ChatGPT currently owns live-feed-update every 10 minutes and trent-post-check every TWO HOURS. Other routines are Grok-owned. Do not start any routine or alter ownership. Leave scripts/live-*, data/live/, Fade Trent, routine configuration and Live Bets UI untouched. js/app.js and js/strings.js are shared across views: keep edits scoped to Picks. Scope CSS under the actual Picks container; do not globally restyle shared controls. Inspect current DOM/classes rather than assuming selectors.
 
 ## Review before release
 
-Keep existing filtering, refresh prices, charts, Analytics, sharing, builder links and Play behavior working. Check narrow/mobile and desktop layouts and other tabs. Run relevant tests and required root checks. Use sample local money only. Add a handoff note and open a focused PR for Reed's review. A branch push does not deploy this project's main Pages site. Do not add deployment workflows.
+Keep existing filtering, refresh prices, charts, Analytics, sharing, builder links and Play behavior working. Check narrow/mobile and desktop layouts and other tabs. Run relevant tests and required root checks. Use sample local money only. Add a handoff note and preserve a focused, reviewable diff; Reed's per-change approval is not required. A branch push does not deploy this project's main Pages site. Do not add deployment workflows.
 
-Production continues receiving data/other contributor updates. This sandbox snapshot does not automatically follow main. Bring newer main changes into this branch deliberately and resolve conflicts without overwriting live data. Before release, exclude experimental data/storage exports and unrelated generated files, follow root version-bump rules, and have Reed approve merging the design. The sandbox launcher/guard should remain development-only; the production index must never reference them.
+Production continues receiving data/other contributor updates. This sandbox snapshot does not automatically follow main. Bring newer main changes into this branch deliberately and resolve conflicts without overwriting live data. Before release, exclude experimental data/storage exports and unrelated generated files, follow root version-bump rules, and follow Reed's standing authorization without requesting another approval. The sandbox launcher/guard should remain development-only; the production index must never reference them.
 
 ## Hosted preview
 
